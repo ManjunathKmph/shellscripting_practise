@@ -1,0 +1,63 @@
+---------------------Shell Scripting notes-------------
+.bash_profile -- is designed to execute when we login and user specific. Can execute .bashrc file
+
+.bashrc -- same as .bash_profile but it executes in new window by calling bash command or source .bashrc command to see the changes in the current window.
+
+/etc/bashrc -- Global bash configuration file
+
+.bash_history -- stores the history of command what user have typed in the current window(logined as user)
+HISTSIZE=100000 -- Environment variable tells to store how many commands user have typed in .bash_history
+HISTCONTROL=ignoredups -- Environment variable tells to ignore duplicate commands
+history command will read the .bash_history file for the specific user and shows the output.
+
+.bash_logout -- will execute after issuing exit command
+
+-To execute a shell script we need to give permission (chmod u+x file_name.sh)
+-To find the bash path run which bash command
+
+- Write a shell script
+#!/bin/bash
+clear
+echo "Hello World"
+
+- To run the shell script command -- ./file_name.sh or sh file_name.sh
+- export TODAYSDATE=`date` -- to use command in export we need to use backtick
+
+- To know the exit status -- run echo $? after running the command
+- To exit the script if any error exit status is found -- set -echo
+- To search previous commands in the history -- press ctr+r and type the command name
+- To escape paranthensis in expr command  -- expr \( 2 + 2 \) \* 4
+- To show local environment variables specific to current shell den run set command
+- To show global environment variables den run env or printenv command
+- To escape the special characters in linux user, use \
+- export myvalue=something den echo "$myvalue"
+
+- echo '$col $dim $dpr' will print $col $dim $dpr
+- echo "$col $dim $dpr" will print only $col in the console as it reads only the first dollar sign
+- echo "Todays Date is: `date`"
+- echo sh{ot,ort,oot}
+- echo st{al,il}l
+- echo ~ --to print home directory path
+- echo "${!HO*}"
+- echo "${VARNAME:=valuesomething}"
+- echo "$[ 2 + 2 ]"
+
+- declar -p MYVAR --to find what type of value can be stored in the variable
+- declare -i NEWVAR=10 -- To store only integer value by declaring explicitly
+- declare -r READONLY="Read only variable" -- To declare readonly variable
+
+- MYARRAY={"first" "second" "thrid"} -- to declar array
+- echo ${MYARRAY[0]} -- to print the index 0 value from myarray
+- echo ${MYARRAY[2]} -- to print the index 2 value from myarray
+- echo ${MYARRAY[300]} -- It prints nothing as there is no 300 index in myarray
+- echo ${MYARRAY[*]} -- To print all values in the myarray
+- MYARRAY[3]="fourth" -- To append element to the end of myarray
+
+Execution Operators example:
+rm superdupper 2> /dev/null && echo "File exists and was removed" || echo "File does not exist and cannot be deleted"
+
+- bash -x env_example.sh -- give additional information while executing the script
+
+- Infobox is text graphical user interface, we need to run sudo yum install dialog
+- echo $? -- to print previous command ouput run success(0) or error(>0)
+- $# -- to get the command line arguments count inside the script
